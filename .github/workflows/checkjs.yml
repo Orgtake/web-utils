@@ -1,0 +1,25 @@
+name: "Hello"
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  check-js:
+   runs-on: ubuntu-latest
+
+   steps:
+     - uses: actions/checkout@v4
+     - uses: actions/setup-node@v4
+       with:
+         node-version: 24
+     - name: Check JS
+       run: |
+         find . -type f -name "*.js" \
+           -not -path "./.git/*" \
+           -not -path "./node_modules/*" \
+           -print0 |
+          while IFS= read -r -d '' file; do
+            echo "Running: $file"
+            node "$file" || exit 1
+          done
