@@ -47,7 +47,7 @@ class Element {
   set blur(pixels) { this.element.style.filter = 'blur(' + pixels + 'px)' }
   addLn() { this.element.textContent += '\n' }
   clearChildren() { this.element.replaceChildren() }
-  get hasCssSelector(selc) { return this.element.matches(selc) }
+  hasCssSelector(selc) { return this.element.matches(selc) }
   appendMulInside(element) { this.element.append(element) }
   appendOneInside(element) { this.element.appendChild(element) }
   getInside(element) { this.element.querySelector(element) }
