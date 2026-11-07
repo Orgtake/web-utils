@@ -6,11 +6,13 @@
 /**
   * An error constructor for the VCT library.
   *
-  @class
-  @extends {Error}
-  @param {string} msg - The message for the error.
+  * @class
+  * @extends {Error}
   */
 class VCTColorConversionError extends Error {
+  /**
+    * @param {string} msg - The message for the error.
+  */
   constructor(msg) {
     super(msg);
   }
@@ -19,12 +21,14 @@ class VCTColorConversionError extends Error {
 /**
   * An array iterable for the VCT library.
   *
-  @class
-  @param {string} value - Value, Please put RGB
-  @param {number[]} color - The color array ([r, g, b])
-  @param {number} transparency - Transparency of color
+  * @class
   */
 class VCTArgumentsArray {
+ /**
+   * @param {string} value - Value, Please put RGB
+   * @param {number[]} color - The color array ([r, g, b])
+   * @param {number} transparency - Transparency of color
+  */
   constructor(value, color, transparency) {
     this.value = value;
     this.color = color;
@@ -42,10 +46,13 @@ class VCTArgumentsArray {
 /**
   * This is the variable for accessing values quickly for the VCT library.
   *
-  * Transparency: for transparency
-  * f = full, 0,
-  * h = half, 0.5,
-  * i = invisible, 1
+  * @type {{
+  *  transparency: {
+  *    f: number,
+  *    h: number,
+  *    i: number
+  *  }
+  * }}
   */
 const vctAccessValues = {
   "transparency": {
@@ -82,7 +89,7 @@ function rgbTable(rgbArray) {
 /**
   * Converts VCT into RGB (with alpha so RGBA alternative)
   *
-  * @param {VCTArgumentsArray} - VCT arguments array
+  * @param {VCTArgumentsArray} vctArgumentsArray - VCT arguments array
   */
 function vctToRgb(vctArgumentsArray) {
   if (vctArgumentsArray.value === "RGB") {
@@ -100,6 +107,8 @@ function vctToRgb(vctArgumentsArray) {
 /**
   * Converts RGB to VCT (VCTArgumentsArray)
   *
+  * @param {number[]} rgbArray - RGB Array
+  * @param {number} transparency - The transparency of the RGB
   */
 function rgbToVct(rgbArray, transparency) {
   return new VCTArgumentsArray("RGB", rgbArray, transparency);
