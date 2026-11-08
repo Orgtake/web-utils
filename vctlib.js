@@ -34,6 +34,11 @@ class VCTArgumentsArray {
     this.color = color;
     this.transparency = transparency;
   }
+ /**
+   * The iterator.
+   *
+   * @yields {string|number[]|number}
+   */
   *[Symbol.iterator]() {
     yield this.value;
     yield this.color;
@@ -62,6 +67,9 @@ const vctAccessValues = {
   }
 };
 // Meaning of VCT
+/**
+  * @type {string}
+  */
 const vctMeaning = "Value Color Transparency";
 
 // Helpers
@@ -71,6 +79,9 @@ const vctMeaning = "Value Color Transparency";
   * for the VCT library.
   *
   * @param {number[]} rgbArray - For the RGB array
+  * @returns {{
+    r: number, g: number, b: number
+  }}
   */
 function rgbTable(rgbArray) {
   if (rgbArray.length !== 3) {
@@ -90,6 +101,9 @@ function rgbTable(rgbArray) {
   * Converts VCT into RGB (with alpha so RGBA alternative)
   *
   * @param {VCTArgumentsArray} vctArgumentsArray - VCT arguments array
+  * @returns {{
+    r: number, g: number, b: number, a: number
+  }}
   */
 function vctToRgb(vctArgumentsArray) {
   if (vctArgumentsArray.value === "RGB") {
@@ -109,6 +123,7 @@ function vctToRgb(vctArgumentsArray) {
   *
   * @param {number[]} rgbArray - RGB Array
   * @param {number} transparency - The transparency of the RGB
+  * @returns {VCTArgumentsArray}
   */
 function rgbToVct(rgbArray, transparency) {
   return new VCTArgumentsArray("RGB", rgbArray, transparency);
